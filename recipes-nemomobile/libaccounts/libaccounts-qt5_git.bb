@@ -4,8 +4,8 @@ LICENSE = "LGPL-2.1-or-later"
 LIC_FILES_CHKSUM = "file://COPYING;md5=243b725d71bb5df4a1e5920b344b86ad"
 
 SRC_URI = "git://gitlab.com/accounts-sso/libaccounts-qt.git;protocol=https;branch=master"
-SRCREV = "525ec684cfa8d234f797d7e49e21c476eea04d8e"
-PV = "1.16"
+SRCREV = "57641e601bbb1cd1dd63d616a83eab341515c3ee"
+PV = "1.17"
 S = "${WORKDIR}/git"
 inherit qmake5 pkgconfig
 
