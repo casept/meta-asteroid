@@ -1,0 +1,53 @@
+From 42f576b258839d3ea51142b8fb8ac992c704cd7e Mon Sep 17 00:00:00 2001
+From: Your Name <you@example.com>
+Date: Thu, 2 Oct 2025 14:23:08 +0200
+Subject: [PATCH] Fix non-RPM build
+
+Upstream-Status: Inappropriate
+
+When running make in yocto, we don't have the headers already installed.
+Work around by referencing a relative path in the build directory.
+---
+ src/voland/interface.h | 6 +-----
+ src/voland/reminder.h  | 7 ++-----
+ 2 files changed, 3 insertions(+), 10 deletions(-)
+
+diff --git a/src/voland/interface.h b/src/voland/interface.h
+index 6afe112..554be4d 100644
+--- a/src/voland/interface.h
++++ b/src/voland/interface.h
+@@ -31,13 +31,9 @@
+ #include <QDBusConnection>
+ #include <QList>
+ #include <QVector>
+-#if QT_VERSION >= QT_VERSION_CHECK(6, 0, 0)
+-#include <timed-qt6/qmacro.h>
+-#else
+-#include <timed-qt5/qmacro.h>
+-#endif
+ #include <QtGlobal>
+ 
++#include "../lib/qmacro.h"
+ #include "reminder.h"
+ 
+ namespace Maemo {
+diff --git a/src/voland/reminder.h b/src/voland/reminder.h
+index 077e972..aa06434 100644
+--- a/src/voland/reminder.h
++++ b/src/voland/reminder.h
+@@ -26,13 +26,10 @@
+ 
+ #include <QDBusMetaType>
+ #include <QString>
+-#if QT_VERSION >= QT_VERSION_CHECK(6, 0, 0)
+-#include <timed-qt6/qmacro.h>
+-#else
+-#include <timed-qt5/qmacro.h>
+-#endif
+ #include <QtGlobal>
+ 
++#include "../lib/qmacro.h"
++
+ namespace Maemo {
+ namespace Timed {
+ namespace Voland {
