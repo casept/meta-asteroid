@@ -5,22 +5,21 @@ LIC_FILES_CHKSUM = "file://COPYING;md5=243b725d71bb5df4a1e5920b344b86ad"
 
 inherit meson pkgconfig vala
 
-SRC_URI = "git://gitlab.com/accounts-sso/libaccounts-glib.git;protocol=https;branch=master \
-        file://0001-meson-Disable-docs-and-tests.patch"
+SRC_URI = "git://gitlab.com/accounts-sso/libaccounts-glib.git;protocol=https;branch=master"
 
-SRCREV = "26c54322304e9df598b2ba67427433a2e68b823e"
+SRCREV = "c823beed760ab2428f3355db06f48c4b5c14c62e"
 PR = "r1"
 PV = "+git${SRCPV}"
 S = "${WORKDIR}/git"
 
-EXTRA_OEMESON = "-Dpy-overrides-dir=/usr/lib/python3.8/dist-packages/gi/overrides/"
+EXTRA_OEMESON = "-Ddocs=false -Dtests=false"
 
 do_install:append() {
     rm -r ${D}/usr/share/gettext/
     rm -r ${D}/usr/lib/girepository-1.0/
 }
 
-DEPENDS += "glib-2.0 glib-2.0-native vala-native python3-pygobject-native gobject-introspection qemu-native"
+DEPENDS += "glib-2.0 glib-2.0-native vala-native python3-pygobject-native gobject-introspection gtk-doc-native qemu-native libxslt-native"
 
 DEPENDS += "libcheck libxml2 sqlite3"
 
