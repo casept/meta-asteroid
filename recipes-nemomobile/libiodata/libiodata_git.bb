@@ -4,7 +4,7 @@ LICENSE = "LGPL-2.1-or-later"
 LIC_FILES_CHKSUM = "file://COPYING;md5=4fbd65380cdd255951079008b364516c"
 
 SRC_URI = "git://github.com/sailfishos/libiodata.git;protocol=https;branch=master"
-SRCREV = "7c2c0274c397a19fa9d855cd0116c37ae459ec54"
+SRCREV = "85517a9f2103e461cbb69dc195335df73b7a8b7e"
 PR = "r1"
 PV = "+git${SRCPV}"
 S = "${WORKDIR}/git"
@@ -12,22 +12,23 @@ inherit qmake5
 B = "${S}"
 DEPENDS += "qtbase bison-native flex-native"
 
-do_configure:prepend () {
-    export IODATA_VERSION=0.19.8
-    sed -i "s@define LOG_LEVEL LOG_WARNING@define LOG_LEVEL LOG_NONE@" src/log.h
-    cd src/
-    ${OE_QMAKE_QMAKE} -makefile -o Makefile ${OE_QMAKE_DEBUG_OUTPUT} ${OE_QMAKE_RECURSIVE} $QMAKE_VARSUBST_PRE $AFTER $PROFILES $QMAKE_VARSUBST_POST
-    oe_runmake
-    cd ..
-}
+#do_configure:prepend () {
+#    export IODATA_VERSION=0.19.8
+#    sed -i "s@define LOG_LEVEL LOG_WARNING@define LOG_LEVEL LOG_NONE@" src/log.h
+#    cd src/
+#    ${OE_QMAKE_QMAKE} -makefile -o Makefile ${OE_QMAKE_DEBUG_OUTPUT} ${OE_QMAKE_RECURSIVE} $QMAKE_VARSUBST_PRE $AFTER $PROFILES $QMAKE_VARSUBST_POST
+#    oe_runmake
+#    cd ..
+#}
 
-do_install () {
-    # Fix install paths for all
-    find -name "Makefile*" | xargs sed -i "s,(INSTALL_ROOT)${STAGING_DIR_TARGET},(INSTALL_ROOT),g"
-    oe_runmake install INSTALL_ROOT=${D}
-}
+#do_install () {
+#    # Fix install paths for all
+#    find -name "Makefile*" | xargs sed -i "s,(INSTALL_ROOT)${STAGING_DIR_TARGET},(INSTALL_ROOT),g"
+#    oe_runmake install INSTALL_ROOT=${D}
+#}
 
 BBCLASSEXTEND = "native"
 
+FILES:${PN}:native += "/usr/bin/iodata-qt5-type-to-c++"
 FILES:${PN}-dbg += "/usr/share/iodata-qt5-tests"
-FILES:${PN}-dev += "/usr/share/mkspecs"
+FILES:${PN}-dev += "/usr/lib/mkspecs"
