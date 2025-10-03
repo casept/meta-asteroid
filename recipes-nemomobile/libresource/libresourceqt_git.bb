@@ -3,9 +3,9 @@ HOMEPAGE = "https://github.com/mer-packages/libresourceqt"
 LICENSE = "LGPL-2.1-or-later"
 LIC_FILES_CHKSUM = "file://COPYING;md5=4fbd65380cdd255951079008b364516c"
 
-SRC_URI = "git://github.com/mer-packages/libresourceqt;protocol=https;branch=master \
+SRC_URI = "git://github.com/sailfishos/libresourceqt;protocol=https;branch=master \
     file://001-Disables_resourceqt-client_build.patch"
-SRCREV = "4483fd800ab67c66d33ff30b28bd5c3137feec7a"
+SRCREV = "a7f6ef9bdf23c1333c119c970c8cb15a870fd879"
 PR = "r1"
 PV = "+git${SRCPV}"
 S = "${WORKDIR}/git"

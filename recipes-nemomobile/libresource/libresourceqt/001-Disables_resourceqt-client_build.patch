@@ -1,11 +1,17 @@
+From c3fd0e999a30673712ef6d5db518057bf8996726 Mon Sep 17 00:00:00 2001
+From: Florent Revest <revestflo@gmail.com>
+Date: Mon, 8 Jun 2015 14:43:24 +0200
+Subject: [PATCH] Initial commit
+
 commit 0a515a50c2aa1ce0f77563a22c719bfd58ecade7
-Author: Florent Revest <revestflo@gmail.com>
-Date:   Mon Jun 8 14:43:24 2015 +0200
 
     Disables resourceqt-client build
+---
+ libresourceqt.pro | 2 --
+ 1 file changed, 2 deletions(-)
 
 diff --git a/libresourceqt.pro b/libresourceqt.pro
-index 1177ab3..7ba2f54 100644
+index 60a4789..1ba4807 100644
 --- a/libresourceqt.pro
 +++ b/libresourceqt.pro
 @@ -24,11 +24,9 @@ TEMPLATE = subdirs
@@ -19,4 +25,4 @@ index 1177ab3..7ba2f54 100644
 -resourceqt-client.depends = libdbus-qeventloop libresourceqt
 
 
- dist.commands   = ./makedist.sh
+ distribution.commands   = ./makedist.sh
