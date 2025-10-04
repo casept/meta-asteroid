@@ -4,9 +4,10 @@ LICENSE = "LGPL-2.1-or-later"
 LIC_FILES_CHKSUM = "file://COPYING;md5=2d5025d4aa3495befef8f17206a5b0a1"
 
 SRC_URI = "gitsm://github.com/sailfishos/dsme.git;protocol=https;branch=master \
-           file://0002-Fix-and-improve-alarm-time-serialization.patch \
-           file://dsme.service"
-SRCREV = "d1518176a68ce416fd19515c0b88da2b48ce606a"
+           file://dsme.service \
+           file://0001-Fix-and-improve-alarm-time-serialization.patch \
+           "
+SRCREV = "ab78f9c1945505c06beb3662878b6be9781565bd"
 PR = "r1"
 PV = "+git${SRCPV}"
 S = "${WORKDIR}/git"
@@ -22,10 +23,6 @@ do_configure:prepend() {
     sed -i "s@<policy user=\"root\">@<policy user=\"ceres\">@" dsme/dsme.conf
     sed -i "s@-L/lib -lsystemd-daemon@-lsystemd@" dsme/Makefile.am
     sed -i "s@LDFLAGS \= \-pthread@LDFLAGS \= \-L${STAGING_DIR_TARGET}/usr/lib \-pthread@" modules/Makefile.am
-}
-
-do_compile() {
-    oe_runmake V=1
 }
 
 do_install:append() {
