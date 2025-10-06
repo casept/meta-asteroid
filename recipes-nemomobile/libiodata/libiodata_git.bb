@@ -27,6 +27,11 @@ DEPENDS += "qtbase bison-native flex-native"
 #    oe_runmake install INSTALL_ROOT=${D}
 #}
 
+do_install:prepend() {
+    set -x
+    echo "${D}"
+}
+
 BBCLASSEXTEND = "native"
 
 FILES:${PN}:native += "/usr/bin/iodata-qt5-type-to-c++"
